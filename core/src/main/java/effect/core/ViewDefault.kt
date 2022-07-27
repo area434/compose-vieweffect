@@ -1,6 +1,6 @@
 package effect.core
 
-internal class ViewImpl(
+internal class ViewDefault(
     private val content: ViewWithEffect
 ) : View {
 

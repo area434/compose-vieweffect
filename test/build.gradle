@@ -1,0 +1,24 @@
+plugins {
+    id 'library-conventions'
+    id 'compose-conventions'
+}
+
+android {
+
+    namespace 'effect.test'
+
+}
+
+def composeVersion = ext["composeVersion"]
+
+dependencies {
+
+    api "org.jetbrains.kotlin:kotlin-test"
+    api "androidx.compose.ui:ui-test-junit4:$composeVersion"
+    api "androidx.compose.ui:ui-tooling-preview:$composeVersion"
+    api "androidx.compose.ui:ui-tooling:$composeVersion"
+    api "androidx.compose.ui:ui:$composeVersion"
+    api "androidx.compose.ui:ui-test-manifest:$composeVersion"
+    api "androidx.compose.foundation:foundation:$composeVersion"
+
+}

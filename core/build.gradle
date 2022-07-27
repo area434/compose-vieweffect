@@ -9,3 +9,10 @@ android {
     namespace 'effect.core'
 
 }
+
+dependencies {
+
+    testImplementation project(":test")
+    androidTestImplementation project(":test")
+
+}

@@ -16,11 +16,11 @@ interface View {
     companion object {
 
         operator fun invoke(content: ViewWithEffect): View {
-            return ViewImpl(content)
+            return ViewDefault(content)
         }
 
         operator fun invoke(content: @Composable ViewWithEffectLambda): View {
-            return ViewImpl(ViewWithEffect(content))
+            return invoke(ViewWithEffect(content))
         }
 
     }

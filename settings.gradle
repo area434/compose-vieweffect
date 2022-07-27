@@ -16,3 +16,4 @@ rootProject.name = "compose-effect"
 
 include ':core'
 include ':foundation'
+include ':test'
