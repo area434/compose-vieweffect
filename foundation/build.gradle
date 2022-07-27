@@ -1,0 +1,21 @@
+plugins {
+    id 'library-conventions'
+    id 'compose-conventions'
+    id 'publish-conventions'
+}
+
+android {
+
+    namespace 'effect.foundation'
+
+}
+
+def composeVersion = ext["composeVersion"]
+
+dependencies {
+
+    implementation project(":core")
+    implementation "androidx.compose.ui:ui:$composeVersion"
+    implementation "androidx.compose.foundation:foundation:$composeVersion"
+
+}

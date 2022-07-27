@@ -1,0 +1,11 @@
+plugins {
+    id 'library-conventions'
+    id 'compose-conventions'
+    id 'publish-conventions'
+}
+
+android {
+
+    namespace 'effect.core'
+
+}
