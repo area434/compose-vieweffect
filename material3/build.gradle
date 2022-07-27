@@ -1,0 +1,23 @@
+plugins {
+    id 'library-conventions'
+    id 'compose-conventions'
+    id 'publish-conventions'
+}
+
+android {
+
+    namespace 'effect.material3'
+
+}
+
+dependencies {
+
+    implementation project(":core")
+    implementation project(":foundation")
+
+    implementation 'androidx.compose.material3:material3:1.0.0-alpha14'
+
+    testImplementation project(":test")
+    androidTestImplementation project(":test")
+
+}

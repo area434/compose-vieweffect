@@ -2,6 +2,7 @@ package effect.foundation
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Brush
@@ -17,6 +18,12 @@ val LocalTextStyle = staticCompositionLocalOf { TextStyle.Default }
 
 fun View.textStyle(style: TextStyle) = modifier {
     CompositionLocalProvider(LocalTextStyle provides style) {
+        it.Compose()
+    }
+}
+
+fun View.textStyle(style: @Composable () -> TextStyle) = modifier {
+    CompositionLocalProvider(LocalTextStyle provides style()) {
         it.Compose()
     }
 }
