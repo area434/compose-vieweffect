@@ -1,0 +1,45 @@
+name: Deploy
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+          fetch-depth: 0
+
+      - name: Set version
+        run: echo "VERSION_NAME=${{ github.ref_name }}-$(git rev-parse --short "$GITHUB_SHA")-SNAPSHOT" >> gradle.properties
+
+      - name: Append variables
+        run: |
+          echo "mavenCentralUsername=$OOSRH_USERNAME" >> gradle.properties
+          echo "mavenCentralPassword=$OOSRH_PASSWORD" >> gradle.properties
+          echo "signingInMemoryKey=$SIGNING_KEY" >> gradle.properties
+          echo "signingInMemoryKeyId=$SIGNING_KEY_ID" >> gradle.properties
+          echo "signingInMemoryKeyPassword=$SIGNING_PASSWORD" >> gradle.properties
+        env:
+          OOSRH_USERNAME: ${{ secrets.OOSRH_USERNAME }}
+          OOSRH_PASSWORD: ${{ secrets.OOSRH_PASSWORD }}
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Build Library
+        run: ./gradlew assembleRelease
+
+      - name: Publish Library
+        run: ./gradlew publishAllPublicationsToMavenCentralRepository --no-parallel
