@@ -1,3 +1,5 @@
 package effect.core
 
-typealias ViewWithEffectLambda = () -> Unit
+import androidx.compose.ui.Modifier
+
+typealias ViewWithEffectLambda = (modifier: Modifier) -> Unit

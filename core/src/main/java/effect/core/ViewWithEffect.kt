@@ -1,10 +1,8 @@
 package effect.core
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
 
-@Stable
-interface ViewWithEffect {
+interface ViewWithEffect : MutableModifier<ViewWithEffect> {
 
     @Composable
     fun Compose()

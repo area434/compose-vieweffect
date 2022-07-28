@@ -1,9 +1,7 @@
 package effect.core
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
 
-@Stable
 interface ViewModifier {
 
     @Composable

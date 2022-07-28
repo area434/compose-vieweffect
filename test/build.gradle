@@ -20,5 +20,6 @@ dependencies {
     api "androidx.compose.ui:ui:$composeVersion"
     api "androidx.compose.ui:ui-test-manifest:$composeVersion"
     api "androidx.compose.foundation:foundation:$composeVersion"
+    api "androidx.test.espresso:espresso-core:3.4.0"
 
 }

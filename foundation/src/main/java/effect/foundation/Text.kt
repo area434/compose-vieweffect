@@ -4,16 +4,14 @@ package effect.foundation
 
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.InlineTextContent
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import effect.core.View
 
 fun Text(
     text: String,
-    modifier: Modifier = Modifier,
     onTextLayout: (TextLayoutResult) -> Unit = {}
-) = View {
+) = View { modifier ->
     BasicText(
         text = text,
         modifier = modifier,
@@ -27,10 +25,9 @@ fun Text(
 
 fun Text(
     text: AnnotatedString,
-    modifier: Modifier = Modifier,
     onTextLayout: (TextLayoutResult) -> Unit = {},
     inlineContent: Map<String, InlineTextContent> = mapOf()
-) = View {
+) = View { modifier ->
     BasicText(
         text = text,
         modifier = modifier,

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 
 @Stable
-interface View {
+interface View : MutableModifier<View> {
 
     fun prepare(): ViewWithEffect
 
