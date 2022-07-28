@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
 import effect.core.View
+import effect.core.ViewScope
 import effect.test.ComposeTest
 import org.junit.Test
 
@@ -26,9 +27,10 @@ class ContainerTest : ComposeTest() {
     fun matchesBrush() = compose {
         val expected = SolidColor(Color.Magenta)
         setContent {
-            View { it.assertContainsProperty("brush", expected) }
-                .container(expected, RectangleShape)
-                .Compose()
+            ViewScope {
+                View { it.assertContainsProperty("brush", expected) }
+                    .container(expected, RectangleShape)
+            }
         }
     }
 
@@ -36,9 +38,10 @@ class ContainerTest : ComposeTest() {
     fun matchesShape_withColor() = compose {
         val expected = RoundedCornerShape(8.dp)
         setContent {
-            View { it.assertContainsProperty("shape", expected) }
-                .container(Color.Magenta, expected)
-                .Compose()
+            ViewScope {
+                View { it.assertContainsProperty("shape", expected) }
+                    .container(Color.Magenta, expected)
+            }
         }
     }
 
@@ -46,9 +49,10 @@ class ContainerTest : ComposeTest() {
     fun matchesShape_withBrush() = compose {
         val expected = RoundedCornerShape(8.dp)
         setContent {
-            View { it.assertContainsProperty("shape", expected) }
-                .container(SolidColor(Color.Magenta), expected)
-                .Compose()
+            ViewScope {
+                View { it.assertContainsProperty("shape", expected) }
+                    .container(SolidColor(Color.Magenta), expected)
+            }
         }
     }
 
@@ -56,9 +60,10 @@ class ContainerTest : ComposeTest() {
     fun matchesAlpha() = compose {
         val expected = .3f
         setContent {
-            View { it.assertContainsProperty("alpha", expected, separator = " = ") }
-                .container(SolidColor(Color.Magenta), RectangleShape, expected)
-                .Compose()
+            ViewScope {
+                View { it.assertContainsProperty("alpha", expected, separator = " = ") }
+                    .container(SolidColor(Color.Magenta), RectangleShape, expected)
+            }
         }
     }
 
@@ -66,12 +71,12 @@ class ContainerTest : ComposeTest() {
     fun matchesClip_withColor() = compose {
         val expected = RoundedCornerShape(8.dp)
         setContent {
-            View {
-                it.assertContainsProperty("clip", true)
-                it.assertContainsProperty("shape", expected)
+            ViewScope {
+                View {
+                    it.assertContainsProperty("clip", true)
+                    it.assertContainsProperty("shape", expected)
+                }.container(Color.Magenta, expected)
             }
-                .container(Color.Magenta, expected)
-                .Compose()
         }
     }
 
@@ -79,16 +84,16 @@ class ContainerTest : ComposeTest() {
     fun matchesClip_withBrush() = compose {
         val expected = RoundedCornerShape(8.dp)
         setContent {
-            View {
-                it.assertContainsProperty("clip", true)
-                it.assertContainsProperty("shape", expected)
+            ViewScope {
+                View {
+                    it.assertContainsProperty("clip", true)
+                    it.assertContainsProperty("shape", expected)
+                }.container(SolidColor(Color.Magenta), expected)
             }
-                .container(SolidColor(Color.Magenta), expected)
-                .Compose()
         }
     }
 
-    // ---
+// ---
 
     private fun Modifier.assertContainsProperty(name: String, value: Any, separator: String = "=") {
         val hasColor = any { it.toString().contains("$name$separator$value") }

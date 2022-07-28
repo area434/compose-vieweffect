@@ -28,7 +28,7 @@ class ViewTest : ComposeTest() {
                 it.Compose()
             }
         }
-        setContent { view.Compose() }
+        setContent { ViewScope { view } }
         val outer = onNodeWithTag(outerTag).assertExists()
         val inner = onNodeWithTag(baseTag).assertExists()
         inner.onParent().assertSameAs(outer)
@@ -36,7 +36,7 @@ class ViewTest : ComposeTest() {
 
     @Test
     fun composesView() = compose {
-        setContent { baseView.Compose() }
+        setContent { ViewScope { baseView } }
         onNodeWithTag(baseTag).assertExists()
     }
 

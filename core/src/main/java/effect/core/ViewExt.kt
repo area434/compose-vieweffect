@@ -9,3 +9,8 @@ fun View.modifier(content: ViewModifier): View {
 fun View.modifier(content: @Composable ViewModifierLambda): View {
     return View { content(prepare()) }
 }
+
+@Composable
+inline fun ViewScope(content: @Composable () -> View) {
+    content().Compose()
+}
